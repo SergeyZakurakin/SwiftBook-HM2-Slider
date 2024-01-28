@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     
     
@@ -42,24 +42,56 @@ class ViewController: UIViewController {
         colorView.layer.cornerRadius = 30
         colorView.backgroundColor = .black
         
+        
+        
+        
     }
     
     
     
     
     @IBAction func SlidersAction(_ sender: UISlider) {
-        colorView.backgroundColor = UIColor(_colorLiteralRed: redSlider.value,
-                                            green: greenSlider.value,
-                                            blue: blueSlider.value, alpha: 1)
+       
+
+        switch sender.tag {
+        case 0:
+            redTextField.text = String(format: "%.1f", redSlider.value)
+            redLabel.text = String(format: "%.1f", redSlider.value)
+        case 1:
+            greenTextField.text = String(format: "%.1f", greenSlider.value)
+            greenLabel.text = String(format: "%.1f", greenSlider.value)
+        case 2:
+            blueTextField.text = String(format: "%.1f", blueSlider.value)
+            blueLabel.text = String(format: "%.1f", blueSlider.value)
+        default: break
+        }
         
+        
+        colorSliderConfigure()
         
     }
     
     
     
+    
+    func colorSliderConfigure () {
+        colorView.backgroundColor = UIColor(_colorLiteralRed: redSlider.value,
+                                            green: greenSlider.value,
+                                            blue: blueSlider.value, alpha: 1)
+    }
+    
  
-    
-    
 
 }
 
+
+//extension ViewController: UITextFieldDelegate {
+//    
+////    
+////    
+////    func textFieldShouldReturn(UITextField) -> Bool {
+////    return true
+////    }
+//    
+//}
+///
